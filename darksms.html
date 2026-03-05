@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ANONYMOUS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+height:100vh;
+
+background:
+linear-gradient(rgba(5,0,20,0.8),rgba(5,0,20,0.9)),
+url('bg.jpg') center/cover no-repeat fixed;
+
+font-family:'Orbitron',sans-serif;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+overflow:hidden;
+
+color:white;
+
+}
+
+/* MATRIX CANVAS */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:0;
+opacity:0.25;
+}
+
+/* контейнер кнопок */
+
+.menu{
+
+position:relative;
+
+z-index:5;
+
+width:90%;
+max-width:900px;
+
+display:flex;
+flex-direction:column;
+
+gap:50px;
+
+}
+
+/* 3D кнопки */
+
+.btn{
+
+position:relative;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+height:150px;
+
+font-size:2.3rem;
+
+letter-spacing:6px;
+
+text-decoration:none;
+
+color:#00fff7;
+
+border-radius:20px;
+
+background:rgba(0,0,0,0.45);
+
+border:2px solid rgba(0,255,255,0.6);
+
+box-shadow:
+
+0 0 20px #00fff7,
+0 0 60px rgba(0,255,255,0.4),
+inset 0 0 25px rgba(0,255,255,0.3);
+
+backdrop-filter:blur(10px);
+
+transition:0.4s;
+
+overflow:hidden;
+
+}
+
+/* неоновая рамка */
+
+.btn::after{
+
+content:"";
+
+position:absolute;
+
+inset:-3px;
+
+border-radius:22px;
+
+background:linear-gradient(
+90deg,
+#00fff7,
+#ff00c8,
+#00fff7,
+#ff00c8,
+#00fff7
+);
+
+background-size:400%;
+
+z-index:-1;
+
+animation:borderMove 6s linear infinite;
+
+}
+
+/* эффект молнии */
+
+.btn::before{
+
+content:"";
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,0.8),
+transparent
+);
+
+transform:translateX(-100%);
+
+animation:lightning 3s infinite;
+
+}
+
+/* hover эффект */
+
+.btn:hover{
+
+transform:scale(1.07);
+
+background:#00fff7;
+
+color:#000;
+
+box-shadow:
+
+0 0 90px #00fff7,
+0 0 150px #ff00c8;
+
+}
+
+/* glitch эффект */
+
+.btn span{
+
+position:relative;
+
+}
+
+.btn:hover span{
+
+animation:glitch 0.4s linear infinite;
+
+}
+
+/* анимации */
+
+@keyframes lightning{
+
+0%{transform:translateX(-100%)}
+50%{transform:translateX(120%)}
+100%{transform:translateX(120%)}
+
+}
+
+@keyframes borderMove{
+
+0%{background-position:0%}
+100%{background-position:400%}
+
+}
+
+@keyframes glitch{
+
+0%{transform:translate(0)}
+20%{transform:translate(-2px,2px)}
+40%{transform:translate(2px,-2px)}
+60%{transform:translate(-2px,0)}
+80%{transform:translate(2px,2px)}
+100%{transform:translate(0)}
+
+}
+
+/* мобильная версия */
+
+@media(max-width:700px){
+
+.btn{
+height:110px;
+font-size:1.6rem;
+letter-spacing:4px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="menu">
+
+<a href="https://t.me/elecrum_job" class="btn">
+<span>INFO CHANNEL</span>
+</a>
+
+<a href="https://t.me/electrum_store" class="btn">
+<span>OPERATOR</span>
+</a>
+
+</div>
+
+<script>
+
+/* MATRIX EFFECT */
+
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01";
+const fontSize = 14;
+const columns = canvas.width/fontSize;
+
+const drops = [];
+
+for(let x = 0; x < columns; x++)
+drops[x] = 1;
+
+function draw(){
+
+ctx.fillStyle = "rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle = "#00fff7";
+ctx.font = fontSize + "px monospace";
+
+for(let i = 0; i < drops.length; i++){
+
+const text = letters.charAt(Math.floor(Math.random()*letters.length));
+
+ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+drops[i] = 0;
+
+drops[i]++;
+
+}
+
+}
+
+setInterval(draw,33);
+
+</script>
+
+</body>
+</html>
