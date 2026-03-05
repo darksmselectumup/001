@@ -13,17 +13,21 @@
         }
 
         body {
-            /* Минимальная высота на весь экран */
             min-height: 100vh;
-            /* Улучшенное отображение фона */
             background: 
                 linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)),
                 url('bg.jpg') center/cover no-repeat fixed;
             font-family: 'Orbitron', sans-serif;
             display: flex;
-            align-items: center;
+            
+            /* Изменено: выравниваем контент по нижней части экрана */
+            align-items: flex-end; 
             justify-content: center;
-            padding: 20px;
+            
+            /* Отступ снизу, чтобы кнопки не прилипали к самому краю */
+            padding-bottom: 80px; 
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         .menu {
@@ -31,8 +35,7 @@
             max-width: 500px;
             display: flex;
             flex-direction: column;
-            gap: 25px;
-            /* Гарантируем, что меню всегда поверх фона */
+            gap: 20px;
             z-index: 10;
         }
 
@@ -41,45 +44,43 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 90px;
+            min-height: 85px;
             padding: 10px 20px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             letter-spacing: 4px;
             text-decoration: none;
             text-align: center;
             font-weight: 800;
             color: #fff;
+            
+            /* Неоновое свечение текста в стиле картинки */
             text-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8;
             
-            /* Стеклянный эффект, чтобы было видно фон */
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 15px;
-            /* Тонкая граница в тон неона */
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            /* Стеклянный эффект */
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 247, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             
             box-shadow: 0 0 15px rgba(255, 0, 200, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Эффект свечения при наведении */
         .btn:hover {
-            transform: scale(1.03);
-            background: rgba(255, 0, 200, 0.1);
-            box-shadow: 0 0 30px rgba(255, 0, 200, 0.5), 0 0 10px rgba(0, 247, 255, 0.5);
+            transform: translateY(-5px);
+            background: rgba(255, 0, 200, 0.15);
+            box-shadow: 0 0 35px rgba(255, 0, 200, 0.6), 0 0 15px rgba(0, 247, 255, 0.5);
             border-color: #00f7ff;
         }
 
-        /* Адаптивность для телефонов */
         @media(max-width: 480px) {
+            body {
+                padding-bottom: 50px; /* Чуть выше на мобильных */
+            }
             .btn {
                 font-size: 1.1rem;
-                min-height: 70px;
-                letter-spacing: 2px;
-            }
-            .menu {
-                gap: 15px;
+                min-height: 75px;
             }
         }
     </style>
