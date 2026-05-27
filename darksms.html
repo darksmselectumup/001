@@ -1,166 +1,624 @@
-
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark SMS Premium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --neon-purple: #bc13fe;
-            --deep-purple: #4b0082;
-            --cyan-accent: #00f7ff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+<title>KapiTrafik</title>
 
-        body {
-            height: 100vh;
-            background: 
-                linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 40%, transparent 100%),
-                url('bg.jpg') center/cover no-repeat fixed;
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            align-items: flex-end; 
-            justify-content: center;
-            padding-bottom: 25px;
-            overflow: hidden;
-        }
+<style>
 
-        .main-container {
-            width: 100%;
-            max-width: 500px;
-            z-index: 10;
-            padding: 0 20px;
-            animation: fadeIn 1s ease-out;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
 
-        /* Твоя идеальная плашка */
-        .info-card {
-            background: rgba(0, 0, 0, 0.85);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.4); 
-            padding: 12px 10px;
-            margin-bottom: 15px;
-            backdrop-filter: blur(20px);
-            text-align: center;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-        }
+body{
+    background:#0b0f1a;
+    color:white;
+    overflow-x:hidden;
+}
 
-        .promo-text { color: #fff; text-transform: uppercase; line-height: 1.3; }
-        .line-1 { font-size: 1rem; font-weight: 800; display: block; letter-spacing: 1px; }
-        .price-line { 
-            display: block; 
-            margin-top: 5px; 
-            font-size: 1.3rem; 
-            font-weight: 900; 
-            color: var(--cyan-accent); 
-            text-shadow: 0 0 15px var(--cyan-accent); 
-        }
+/* HEADER */
 
-        /* --- ГЛЯНЦЕВЫЕ ФИОЛЕТОВЫЕ КНОПКИ --- */
-        .menu { display: flex; flex-direction: column; gap: 12px; }
+header{
+    padding:60px 20px;
+    text-align:center;
+    background:
+    radial-gradient(circle at top,#25355c 0%, #111827 45%, #090d16 100%);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
 
-        .btn {
-            position: relative;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid rgba(188, 19, 254, 0.5);
-            
-            /* Глубокий фиолетовый градиент */
-            background: linear-gradient(180deg, #240046 0%, #10002b 100%);
-            box-shadow: 
-                0 5px 15px rgba(0,0,0,0.5),
-                inset 0 0 20px rgba(188, 19, 254, 0.2);
-            
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+header h1{
+    font-size:58px;
+    letter-spacing:2px;
+    color:#7aa2ff;
+    margin-bottom:15px;
+    text-shadow:0 0 20px rgba(122,162,255,0.5);
+}
 
-        /* Стеклянный глянец (блик) */
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 50%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            pointer-events: none;
-        }
+header p{
+    font-size:22px;
+    color:#c7d2fe;
+}
 
-        /* Фиолетовое свечение снизу */
-        .btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%; height: 30%;
-            background: var(--neon-purple);
-            filter: blur(15px);
-            opacity: 0.3;
-            transition: 0.4s;
-        }
+/* CONTAINER */
 
-        .btn-text {
-            font-size: 1.3rem;
-            font-weight: 900;
-            color: #fff;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            z-index: 5;
-            text-shadow: 0 0 10px var(--neon-purple);
-            transition: 0.4s;
-        }
+.container{
+    width:95%;
+    max-width:1200px;
+    margin:auto;
+    padding:40px 0;
+}
 
-        /* Эффекты при наведении */
-        .btn:hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: var(--neon-purple);
-            background: linear-gradient(180deg, #3c096c 0%, #240046 100%);
-            box-shadow: 
-                0 15px 30px rgba(188, 19, 254, 0.4),
-                inset 0 0 15px rgba(255, 255, 255, 0.1);
-        }
+/* CATEGORY */
 
-        .btn:hover::after { opacity: 0.7; height: 50%; }
-        .btn:hover .btn-text { letter-spacing: 6px; text-shadow: 0 0 20px #fff; }
+.category{
+    background:#131c2f;
+    margin-bottom:25px;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.06);
+    transition:0.3s;
+}
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.category:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
+}
 
-        @media(max-width: 480px) {
-            .btn { height: 60px; }
-            .btn-text { font-size: 1.1rem; letter-spacing: 2px; }
-            .line-1 { font-size: 0.9rem; }
-            .price-line { font-size: 1.1rem; }
-        }
-    </style>
+.category-title{
+    padding:24px;
+    font-size:26px;
+    cursor:pointer;
+    background:linear-gradient(90deg,#1f2b46,#25355c);
+    color:#ffffff;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.category-title:hover{
+    background:linear-gradient(90deg,#2d3d63,#344979);
+}
+
+.category-content{
+    display:none;
+    padding:25px;
+}
+
+/* PRODUCT */
+
+.product{
+    background:#0f1727;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.product img{
+    width:100%;
+    border-radius:16px;
+    margin-bottom:20px;
+    max-height:420px;
+    object-fit:cover;
+}
+
+.product h3{
+    font-size:32px;
+    margin-bottom:18px;
+    color:#8fb4ff;
+}
+
+.product p{
+    color:#d7dff5;
+    line-height:1.8;
+    font-size:17px;
+    margin-bottom:15px;
+}
+
+.price{
+    font-size:30px;
+    color:#ffffff;
+    margin-top:20px;
+    font-weight:bold;
+}
+
+/* BUY BUTTON */
+
+.buy-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:16px 40px;
+    border-radius:60px;
+    background:linear-gradient(45deg,#6d8dff,#9f7aea);
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:bold;
+    transition:0.3s;
+    box-shadow:0 0 20px rgba(109,141,255,0.4);
+}
+
+.buy-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 35px rgba(109,141,255,0.7);
+}
+
+/* CONTACTS */
+
+.contacts{
+    margin-top:50px;
+}
+
+.contacts h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:40px;
+    color:#8fb4ff;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.contact-btn{
+    position:relative;
+    padding:28px 20px;
+    border-radius:24px;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(145deg,#1a2642,#25355c);
+    overflow:hidden;
+    transition:0.35s;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.contact-btn:hover{
+    transform:translateY(-5px) scale(1.02);
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
+}
+
+.contact-btn::before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:rgba(255,255,255,0.05);
+    border-radius:50%;
+    top:-80px;
+    right:-80px;
+}
+
+.contact-btn h3{
+    position:relative;
+    font-size:24px;
+    margin-bottom:10px;
+    z-index:2;
+}
+
+.contact-btn p{
+    position:relative;
+    color:#cbd5e1;
+    z-index:2;
+    line-height:1.5;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+header h1{
+    font-size:40px;
+}
+
+header p{
+    font-size:18px;
+}
+
+.category-title{
+    font-size:20px;
+}
+
+.product h3{
+    font-size:26px;
+}
+
+.product p{
+    font-size:15px;
+}
+
+.buy-btn{
+    width:100%;
+    text-align:center;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="main-container">
-        
-        <div class="info-card">
-            <div class="promo-text">
-                <span class="line-1">🔰⚜️dark service⚜️🔰</span> 
-                    <span class="line-2">🃏😮‍💨Тг аки, Мануалы анонимности, Рассылка, Work team и другое🔥♠️</span>
-                <span class="price-line">⚜️Вся нужная информация в инфо канале⚜️</span>
-                <span class="line-3">🤗По поводу покупки пишите оператору САНЯ ТЫ ГОЛОВА?🤗</span>
-            </div>
-        </div>
+<header>
+    <h1>KapiTrafik</h1>
+    <p>Маркетплейс цифровых услуг нового поколения</p>
+</header>
 
-        <div class="menu">
-            <a href="https://t.me/darksmsel" class="btn">
-                <span class="btn-text">ІНФО КАНАЛ</span>
-            </a>
-            <a href="https://t.me/Dark_sms777" class="btn">
-                <span class="btn-text">ОПЕРАТОР</span>
-            </a>
-        </div>
-    </div>
+<div class="container">
+
+<!-- АККАУНТЫ -->
+
+<div class="category">
+
+<div class="category-title" onclick="toggleCategory(this)">
+1. Аккаунты
+</div>
+
+<div class="category-content">
+
+<div class="product">
+
+<img src="telegram.jpg" alt="Telegram Accounts">
+
+<h3>Telegram Аккаунты</h3>
+
+<p>
+Специально прогретые Telegram аккаунты возрастом от 3-х месяцев.
+Подходят для рассылки, продвижения, рекламы, общения и любых других задач.
+Аккаунты имеют высокий траст и полностью готовы к работе.
+</p>
+
+<p>
+Подходят как для ручной работы, так и для автоматизации через ботов и софт.
+Каждый аккаунт проходит проверку перед продажей.
+</p>
+
+<p>
+Качество аккаунтов: 6/6 звезд.
+Свободное использование без ограничений.
+</p>
+
+<div class="price">2-5$ за штуку</div>
+
+<a href="https://t.me/KapiTrafik" class="buy-btn">
+Купить
+</a>
+
+</div>
+
+<div class="product">
+
+<img src="facebook.jpg" alt="Facebook Accounts">
+
+<h3>Facebook Аккаунты</h3>
+
+<p>
+Прогретые Facebook аккаунты подготовленные специальным методом
+для запуска таргетированной рекламы.
+</p>
+
+<p>
+Подходят для Facebook Ads и работы с рекламными кабинетами.
+Аккаунты готовы к запуску рекламы практически сразу после покупки.
+</p>
+
+<p>
+Поддерживается стабильная работа под анонимным подключением.
+</p>
+
+<div class="price">Цена обсуждается</div>
+
+<a href="https://t.me/KapiTrafik" class="buy-btn">
+Купить
+</a>
+
+</div>
+
+</div>
+</div>
+
+<!-- ОБУЧЕНИЕ -->
+
+<div class="category">
+
+<div class="category-title" onclick="toggleCategory(this)">
+2. Обучение рекламы Facebook / Telegram
+</div>
+
+<div class="category-content">
+
+<div class="product">
+
+<img src="facebook-ads.jpg" alt="Facebook Ads">
+
+<h3>Facebook Реклама</h3>
+
+<p>
+Полное обучение по запуску рекламы в Facebook.
+Создание современных рекламных креативов при помощи передовых нейросетей.
+</p>
+
+<p>
+Подключение антидетект браузера с использованием бесплатных proxy через TOR Browser
+для максимальной анонимности и безопасности.
+</p>
+
+<p>
+Инструкции по работе под нужное GEO и целевую аудиторию.
+Настройка рекламы таким образом, чтобы она показывалась в нужном городе и нужным людям.
+</p>
+
+<p>
+Поддержка и рекомендации под ваше направление деятельности.
+</p>
+
+<div class="price">
+Цена обсуждается индивидуально
+</div>
+
+<a href="https://t.me/KapiTrafik" class="buy-btn">
+Связаться
+</a>
+
+</div>
+
+<div class="product">
+
+<img src="sas.png" alt="Kapitraf BOT">
+
+<h3>Kapitraf BOT</h3>
+
+<p>
+Передовой Telegram бот для автоматизации продвижения.
+Создайте полноценную рекламную ферму прямо на своем ПК.
+</p>
+
+<p>
+Функционал:
+<br><br>
+
+• Автоматическая рассылка через избранное
+<br>
+
+• Парсер чатов по ключевым словам
+<br>
+
+• Поддержка нейросетей для подбора ключевых слов
+<br>
+
+• Автоматический сбор общедоступных чатов
+<br>
+
+• Джойнер — автоматическое добавление чатов
+<br>
+
+• Чекер — проверка возможности писать в чат
+<br>
+
+• Автоматический выход из неактивных чатов
+<br>
+
+• Поддержка пересылки сообщений с фото
+</p>
+
+<p>
+Бонус:
+Полная инструкция по анонимизации аккаунтов,
+чтобы минимизировать ограничения и стабилизировать работу рекламы.
+</p>
+
+<div class="price">
+200$
+</div>
+
+<a href="https://t.me/KapiTrafik" class="buy-btn">
+Купить
+</a>
+
+</div>
+
+</div>
+</div>
+
+<!-- ДИЗАЙН -->
+
+<div class="category">
+
+<div class="category-title" onclick="toggleCategory(this)">
+3. Дизайн
+</div>
+
+<div class="category-content">
+
+<div class="product">
+
+<img src="design.jpg" alt="Design">
+
+<h3>Создание рекламных креативов</h3>
+
+<p>
+Создание рекламных креативов и любых других изображений для вашей ниши.
+</p>
+
+<p>
+Генерация контента с помощью специальных промтов,
+материалов и платных нейросетей нового поколения.
+</p>
+
+<p>
+Подходит для рекламы, Telegram каналов,
+таргетированной рекламы, интернет-магазинов и бизнеса.
+</p>
+
+<div class="price">
+От 3$ за изображение
+</div>
+
+<a href="https://t.me/KapiTrafik" class="buy-btn">
+Заказать
+</a>
+
+</div>
+
+</div>
+</div>
+
+<!-- БЕЗОПАСНОСТЬ -->
+
+<div class="category">
+
+<div class="category-title" onclick="toggleCategory(this)">
+4. Безопасность
+</div>
+
+<div class="category-content">
+
+<div class="product">
+
+<img src="security.jpg" alt="Security">
+
+<h3>Курс по анонимности</h3>
+
+<p>
+Полный мануал по анонимности в интернете.
+</p>
+
+<p>
+Использование Proxy + TOR для любых приложений на вашем ПК.
+Работа под разными IP адресами.
+</p>
+
+<p>
+Все нужные файлы и подробная инструкция уже включены.
+После покупки не требуется оплачивать дополнительные сервисы.
+</p>
+
+<p>
+Решение подходит для работы, рекламы,
+мультиаккаунтинга и повышения приватности.
+</p>
+
+<div class="price">
+150$
+</div>
+
+<a href="https://t.me/KapiTrafik" class="buy-btn">
+Купить
+</a>
+
+</div>
+
+</div>
+</div>
+
+<!-- РАЗРАБОТКА -->
+
+<div class="category">
+
+<div class="category-title" onclick="toggleCategory(this)">
+5. Разработка сайтов / Telegram ботов
+</div>
+
+<div class="category-content">
+
+<div class="product">
+
+<img src="dev.jpg" alt="Development">
+
+<h3>Разработка под ваши задачи</h3>
+
+<p>
+Создание сайтов, Telegram ботов,
+автоматизаций и решений под ваш проект.
+</p>
+
+<p>
+Разработка индивидуального функционала,
+адаптация под телефон и современные устройства.
+</p>
+
+<p>
+На первый заказ скидка 30%.
+Стоимость зависит от сложности проекта.
+</p>
+
+<div class="price">
+Цена обсуждается
+</div>
+
+<a href="https://t.me/KapiTrafik" class="buy-btn">
+Заказать
+</a>
+
+</div>
+
+</div>
+</div>
+
+<!-- CONTACTS -->
+
+<div class="contacts">
+
+<h2>
+Актуальные контакты KapiTrafik
+</h2>
+
+<div class="contact-grid">
+
+<a href="https://t.me/+Tboq9O5hbEhlMTgy" class="contact-btn">
+<h3>Info Channel</h3>
+<p>
+Новости, обновления и актуальная информация
+</p>
+</a>
+
+<a href="https://t.me/+W8MEEjbzPIRiMzFi" class="contact-btn">
+<h3>Отзывы клиентов</h3>
+<p>
+Отзывы и результаты клиентов
+</p>
+</a>
+
+<a href="https://t.me/KapiTrafik" class="contact-btn">
+<h3>Оператор продаж</h3>
+<p>
+Связь по покупке услуг и консультации
+</p>
+</a>
+
+<a href="https://t.me/KapiSapport" class="contact-btn">
+<h3>Тех. поддержка</h3>
+<p>
+Помощь и ответы на вопросы
+</p>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function toggleCategory(element){
+
+let content = element.nextElementSibling;
+
+if(content.style.display === "block"){
+content.style.display = "none";
+}else{
+content.style.display = "block";
+}
+
+}
+
+</script>
 
 </body>
 </html>
