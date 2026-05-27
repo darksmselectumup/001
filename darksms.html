@@ -3,6 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Crown</title>
+/* Корона */
+
+.crown {
+
+  position: relative;
+
+  width: 120px;
+
+  height: 70px;
+
+  background: gold;
+
+  border-radius: 0 0 12px 12px;
+
+  /* НАКЛОН */
+
+  transform: rotate(-15deg);
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+
+}
+
+.crown::before,
+
+.crown::after,
+
+.crown span {
+
+  content: "";
+
+  position: absolute;
+
+  width: 0;
+
+  height: 0;
+
+  border-left: 20px solid transparent;
+
+  border-right: 20px solid transparent;
+
+  border-bottom: 50px solid gold;
+
+}
+
+/* Левый пик */
+
+.crown::before {
+
+  top: -35px;
+
+  left: 5px;
+
+}
+
+/* Центральный пик */
+
+.crown span {
+
+  top: -55px;
+
+  left: 40px;
+
+}
+
+/* Правый пик */
+
+.crown::after {
+
+  top: -35px;
+
+  right: 5px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="crown">
+
+  <span></span>
+
+</div>
+
+</body>
+
+</html>
 
 <title>⚜️ 𝐊𝐚𝐩𝐢 𝐓𝐫𝐚𝐟𝐢𝐤 ⚜️</title>
 
